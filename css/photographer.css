@@ -3,34 +3,131 @@
 }
 
 .photograph-header {
-    background-color: #FAFAFA;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
     height: 300px;
     margin: 0 100px;
+    padding: 0 50px;
+    background-color: #FAFAFA;
+}
+
+.photograph-header div {
+    justify-self: start;
+}
+
+.photograph-header div h1 {
+    margin: 0;
+    font-size: 64px;
+    font-weight: 400;
+    color: #D3573C;
+}
+
+.photograph-header div p {
+    margin: 0;
+    font-weight: 400;
+}
+
+.photograph-header div p:nth-of-type(1) {
+    margin: 0 0 19px;
+    font-size: 24px;
+    color: #901C1C;
+}
+
+.photograph-header div p:nth-of-type(2) {
+    font-size: 18px;
+    color: #525252;
+}
+
+.photograph-header img {
+    justify-self: end;
+}
+
+
+.photograph-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+    margin: 0 100px 100px;
+    gap: 20px 95px;
+    justify-content: center;
+}
+
+.photograph-gallery .picture-thumbnail {
+    display: block;
+    margin: 0 0 10px;
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.photograph-gallery .picture-details {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    max-width: 350px;
+    align-items: start;
+}
+
+.photograph-gallery .picture-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    color: #901C1C;
+}
+
+.photograph-gallery .picture-likes {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0 5px;
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #901C1C;
+}
+
+.photograph-gallery .likes-icon {
+    cursor: pointer;
 }
 
 .contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
+    justify-self: center;
     padding: 11px;
     width: 170px;
     height: 70px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
+#contact_modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	place-items: center;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(196, 196, 196, 77%);
+	overflow: auto;
+}
+
+#contact_modal .modal {
+	border-radius: 5px;
+	background-color: #DB8876;
+	width: 669px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	padding: 35px;
+	margin: 2rem 0;
 }
 
 .modal header {
@@ -39,10 +136,12 @@
 }
 
 .modal header img {
+    width: 42px;
     cursor: pointer;
 }
 
 .modal header h2 {
+    margin: 0;
     font-size: 64px;
     font-weight: normal;
     text-align: center;
@@ -73,4 +172,69 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+form textarea {
+    width: 100%;
+    height: 170px;
+    border: none;
+    border-radius: 5px;
+    resize: none;
+}
+
+
+
+
+.photograph-gallery-filter {
+    margin: 20px 100px 58px;
+}
+
+.photograph-gallery-filter label {
+    font-size: 18px;
+    font-weight: 700;
+}
+/* .custom-select select {
+    width: 170px;
+    padding: 23px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #901C1C;
+    border: 0;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+} */
+
+/* .custom-select select option {
+    border: 0;
+    border-radius: 0;
+}
+
+.custom-select select option:last-child {
+    border-radius: 5px 5px 0 0;
+} */
+
+.photograph-stat {
+    position: fixed;
+    bottom: 0;
+    right: 36px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 375px;
+    height: 64px;
+    border-radius: 5px 5px 0 0;
+    background: #DB8876;
+}
+
+.photograph-stat p {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.photograph-stat .photograph-likes {
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
 }
