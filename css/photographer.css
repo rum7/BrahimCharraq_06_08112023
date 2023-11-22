@@ -8,7 +8,7 @@
     align-items: center;
     justify-items: center;
     height: 300px;
-    margin: 0 100px;
+    margin: 0;
     padding: 0 50px;
     background-color: #FAFAFA;
 }
@@ -47,36 +47,51 @@
 
 .photograph-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
-    margin: 0 100px 100px;
-    gap: 20px 95px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 350px));
+    margin: 0 0 100px;
+    gap: 30px 95px;
     justify-content: center;
+    position: relative;
+    z-index: 0;
 }
 
-.photograph-gallery .picture-thumbnail {
-    display: block;
-    margin: 0 0 10px;
+.photograph-gallery .media {
+    overflow: hidden;
+    border-radius: 5px;
     width: 350px;
     height: 300px;
+    cursor: zoom-in;
+}
+
+.photograph-gallery .media-thumbnail {
+    margin: 0 auto 10px;
+    width: 352px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 5px;
+    transition: transform ease-out .2s;
+    /* -webkit-transform-style: preserve-3d; 
+    -webkit-backface-visibility: hidden; */
 }
 
-.photograph-gallery .picture-details {
-    display: grid;
-    grid-template-columns: 1fr 50px;
-    max-width: 350px;
-    align-items: start;
+.photograph-gallery .media-thumbnail:hover {
+    transform: scale(1.2);
 }
 
-.photograph-gallery .picture-title {
+.photograph-gallery .media-details {
+	display: grid;
+	grid-template-columns: 1fr 80px;
+	max-width: 350px;
+	align-items: start;
+}
+
+.photograph-gallery .media-title {
     margin: 0;
     font-size: 24px;
     font-weight: 400;
     color: #901C1C;
 }
 
-.photograph-gallery .picture-likes {
+.photograph-gallery .media-likes {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -89,7 +104,26 @@
 }
 
 .photograph-gallery .likes-icon {
+    border: 0;
+    background: none;
+    padding: 5px;
     cursor: pointer;
+}
+
+.photograph-gallery .likes-icon svg {
+    display: block;
+    fill: #911C1C;
+    transition: all ease-out .25s;
+}
+
+.photograph-gallery .likes-icon svg:hover,
+.photograph-gallery .likes-icon .liked {
+    fill: #DB8876;
+}
+
+.contact_button:hover {
+    color: #000;
+    background-color: #DB8876;
 }
 
 .contact_button {
@@ -99,26 +133,28 @@
     height: 70px;
     font-size: 20px;
     font-weight: 700;
-    color: white;
+    color: #fff;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
 }
 
-#contact_modal {
+.modal_container {
 	display: none;
 	position: fixed;
+	z-index: 2;
 	top: 0;
 	left: 0;
 	place-items: center;
 	width: 100%;
 	height: 100vh;
-	background-color: rgba(196, 196, 196, 77%);
+	background-color: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(5px);
 	overflow: auto;
 }
 
-#contact_modal .modal {
+.modal_container .modal {
 	border-radius: 5px;
 	background-color: #DB8876;
 	width: 669px;
@@ -147,72 +183,123 @@
     text-align: center;
 }
 
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
+.modal form {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 26px 0;
 }
 
-form label {
+.modal form label {
     color: #312E2E;
     font-size: 36px;
 }
 
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
+.modal form div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
+.modal form .modal-input-field {
+	border: none;
+	border-radius: 5px;
+	padding: 1rem;
+	font-size: 1rem;
 }
 
-form textarea {
-    width: 100%;
+.modal form textarea {
     height: 170px;
-    border: none;
-    border-radius: 5px;
     resize: none;
 }
 
-
-
-
 .photograph-gallery-filter {
-    margin: 20px 100px 58px;
+	display: flex;
+	margin: 20px 0;
+	gap: 0 25px;
+    position: relative;
+    z-index: 1;
 }
 
-.photograph-gallery-filter label {
+.photograph-gallery-filter p {
+    display: inline;
     font-size: 18px;
     font-weight: 700;
 }
-/* .custom-select select {
-    width: 170px;
-    padding: 23px 20px;
+
+.dropdown-btn {
+	position: relative;
+}
+
+.dropdown-btn .btn-filter {
+	width: 170px;
+	padding: 23px 20px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #fff;
+	background-color: #901C1C;
+	border: 0;
+	border-radius: 5px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.dropdown-btn.open .btn-filter {
+	border-radius: 5px 5px 0 0;
+}
+
+.dropdown-btn.open .btn-filter svg {
+	transform: rotate(180deg);
+}
+
+.dropdown-btn .dropdown-item {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    display: none;
+    width: 100%;
+    list-style: none;
+}
+
+.dropdown-btn .dropdown-item button {
+    display: flex;
+    padding: 0 10px;
+    width: 100%;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
     background-color: #901C1C;
     border: 0;
-    border-radius: 5px 5px 0 0;
     cursor: pointer;
-} */
-
-/* .custom-select select option {
-    border: 0;
-    border-radius: 0;
 }
 
-.custom-select select option:last-child {
-    border-radius: 5px 5px 0 0;
-} */
+.dropdown-btn .dropdown-item .hide {
+    display: none;
+}
+
+.dropdown-btn .dropdown-item li:hover button {
+    color: #000;
+    background-color: #DB8876;
+}
+
+.dropdown-btn .dropdown-item li:last-child button{
+    border-radius: 0 0 5px 5px;
+}
+
+.dropdown-btn .dropdown-item span {
+    padding: 14px 10px;
+    width: 100%;
+    text-align: left;
+    border-top: 1px #fff solid;
+
+}
+
+.dropdown-btn.open .dropdown-item {
+	display: block;
+}
 
 .photograph-stat {
     position: fixed;
@@ -237,4 +324,79 @@ form textarea {
     display: flex;
     align-items: center;
     gap: 0 5px;
+}
+
+.photograph-stat .photograph-likes button {
+	border: 0;
+	background: 0;
+	padding: 5px;
+	cursor: pointer;
+}
+
+
+
+#media-lightbox {
+	justify-content: center;
+}
+
+.lightbox-container {
+    display: flex;
+    position: relative;
+    gap: 0 10px;
+    align-items: center;
+}
+
+.media-content {
+    width: 950px;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+}
+
+.media-content img,
+.media-content video {
+    max-height: 800px;
+    max-width: 950px;
+    object-fit: contain;
+    display: block;
+}
+
+.media-content h3 {
+    font-size: 24px;
+    font-weight: 400;
+    position: absolute;
+    color: #901C1C;
+    bottom: -70px;
+}
+
+.previous-media,
+.next-media,
+.close-media {
+	cursor: pointer;
+	padding: 25px;
+}
+
+.previous-media,
+.next-media {
+    position: relative;
+    top: -28px;
+}
+
+.close-media {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.previous-media svg,
+.next-media svg,
+.close-media svg {
+    display: block;
+    fill: #911C1C;
+}
+
+.previous-media:hover svg,
+.next-media:hover svg,
+.close-media:hover svg {
+    fill: #DB8876;
 }
