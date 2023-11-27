@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 const mediaLightbox = document.getElementById('media-lightbox')
 const mediaLightboxContent = document.querySelector('.media-content')
 let medias = []
 let currentMediaIndex = 0
 let mediacardsLength = 0
+let lightboxOpen = false
 
 const previousMediaBtn = document.querySelector('.previous-media')
 previousMediaBtn.addEventListener('click', previousMedia)
@@ -46,6 +48,7 @@ async function openLightbox(event) {
     await displayMedia(currentMediaIndex)
     mediaLightbox.style.display = "flex"
     document.body.style.overflow = "hidden"
+    lightboxOpen = true
 }
 
 function previousMedia() {
@@ -66,6 +69,7 @@ function closeLightbox() {
     mediaLightbox.style.display = 'none'
     document.body.removeAttribute('style')
     medias = []
+    lightboxOpen = false
 }
 
 document.addEventListener('click', (event) => {
@@ -74,3 +78,17 @@ document.addEventListener('click', (event) => {
     }
 })
 
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeLightbox()
+    }
+
+    if(lightboxOpen) {
+        if (event.key === 'ArrowLeft') {
+            previousMedia()
+        }
+        if (event.key === 'ArrowRight') {
+            nextMedia()
+        }
+    }
+})

@@ -22,6 +22,16 @@ h1 {
     font-weight: 400;
 }
 
+button {
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+button > * {
+    pointer-events: none;
+}
+
 .logo {
     height: 50px;
     margin: 42px 0 0;
@@ -31,7 +41,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin: 100px 0 0;
+    margin: 100px 0;
 }
 
 .photographer_section article {

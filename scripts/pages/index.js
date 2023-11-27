@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 async function getPhotographers() {
     const response = await fetch('../../data/photographers.json')
     const data = await response.json()
@@ -5,7 +6,7 @@ async function getPhotographers() {
     return photographers
 }
 
-async function displayData(photographers) {
+function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section")
 
     photographers.forEach((photographer) => {

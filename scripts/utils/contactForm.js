@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const modal = document.getElementById("contact_modal")
 const contactForm = document.getElementById('contact')
 contactForm.addEventListener('submit', submitContactForm)
@@ -17,3 +18,15 @@ function submitContactForm(event) {
     console.log("Votre message est en cours de traitement 🥴")
     closeModal()
 }
+
+document.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModal()
+    }
+})
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeModal()
+    }
+})

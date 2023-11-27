@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 function mediaDataListTemplate(data) {
     const { photographerId, title, image, video, likes, date} = data
     const content = image ?? video
@@ -12,7 +14,7 @@ function mediaDataListTemplate(data) {
         mediaCard.dataset.date = date
 
         // media element container
-        const mediaContainer = document.createElement('div')
+        const mediaContainer = document.createElement('button')
         mediaContainer.classList.add('media')
 
         // media element (image or video)

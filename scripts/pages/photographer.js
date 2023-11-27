@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 async function getAllData(currentPhotographerId) {
     const response = await fetch('../../data/photographers.json')
     const data = await response.json()
@@ -13,11 +15,11 @@ async function getAllData(currentPhotographerId) {
     return { photographerData, mediaDataList, totalLikes }
 }
 
-async function displayPhotographerData(photographerData) {
+function displayPhotographerData(photographerData) {
     photographerHeaderTemplate(photographerData[0])
 }
 
-async function displayMediaDataList(mediaDataList) {
+function displayMediaDataList(mediaDataList) {
     const photographerContent = document.querySelector('.photograph-gallery')
     photographerContent.innerHTML = ""
     
@@ -29,7 +31,7 @@ async function displayMediaDataList(mediaDataList) {
     })
 }
 
-async function displayPhotographerStat(totalLikes, price) {
+function displayPhotographerStat(totalLikes, price) {
     const mainSection = document.getElementById('main')
     mainSection.insertAdjacentHTML("beforeend", `
         <div class="photograph-stat">
@@ -46,6 +48,7 @@ async function displayPhotographerStat(totalLikes, price) {
 }
 
 function updateLike(event) {
+    const dataLikes = event.currentTarget.parentNode.parentNode.parentNode
     const likesCount = event.currentTarget.previousSibling
     const likeSVG = event.currentTarget.firstChild
     const likesTotal = document.querySelector('.likes-total')
@@ -54,14 +57,17 @@ function updateLike(event) {
         likeSVG.classList.remove('liked')
         likesCount.textContent = Number(likesCount.textContent) - 1
         likesTotal.textContent = Number(likesTotal.textContent) - 1
+        dataLikes.dataset.likes = Number(dataLikes.dataset.likes) - 1
     } else {
         likeSVG.classList.add('liked')
         likesCount.textContent = Number(likesCount.textContent) + 1
         likesTotal.textContent = Number(likesTotal.textContent) + 1
+        dataLikes.dataset.likes = Number(dataLikes.dataset.likes) + 1
     }
+    console.log('dataLikes: ', dataLikes.getAttribute('data-likes'))
 }
 
-async function openFilterList(event) {
+function openFilterList(event) {
     const currentFilter = event.currentTarget.getElementsByTagName('span')[0].textContent
     const allFilterBtn = Array.from(document.querySelector('.dropdown-item').querySelectorAll('li'))
     allFilterBtn.forEach(filterBtn => {
@@ -76,7 +82,7 @@ async function openFilterList(event) {
     dropdownBtn.classList.toggle('open')
 }
 
-async function closeFilterList(sortBy) {
+function closeFilterList(sortBy) {
     const newFilter = document.querySelector('.btn-filter').getElementsByTagName('span')[0]
     newFilter.textContent = sortBy
 
@@ -84,7 +90,7 @@ async function closeFilterList(sortBy) {
     dropdownBtn.classList.remove('open')
 }
 
-async function sortGallery(event) {
+function sortGallery(event) {
     const sortBy = event.currentTarget.textContent
     const photographerContent = document.querySelector('.photograph-gallery')
     const mediacards = Array.from(document.querySelectorAll('.mediacard'))
@@ -122,7 +128,22 @@ async function init() {
 
     const selectFilter = document.querySelector('.btn-filter')
     selectFilter.addEventListener('click', openFilterList)
+    const dropdownBtn = document.querySelector('.dropdown-btn')
 
+    document.addEventListener('click', (event) => {
+        console.log('event.target: ', event.target)
+        if (!event.target.matches('.btn-filter')
+        && dropdownBtn.classList.contains('open')) {
+            dropdownBtn.classList.remove('open')
+        }
+    })
+
+    // window.onclick = function(e) {
+    //     if (!e.target.classList.matches('.btn-filter') && dropdownBtn.classList.contains('open')){
+    //         dropdownBtn.classList.remove('open')
+    //     }
+    //  }
+    
     const btnSortbyLike = document.querySelector('.btn-sortby-like')
     btnSortbyLike.addEventListener('click', sortGallery)
     
