@@ -16,6 +16,7 @@ function mediaDataListTemplate(data) {
         // media element container
         const mediaContainer = document.createElement('button')
         mediaContainer.classList.add('media')
+        mediaContainer.setAttribute('aria-label', 'Voir le media')
 
         // media element (image or video)
         let media = null
@@ -42,6 +43,8 @@ function mediaDataListTemplate(data) {
 
         const likeBtn = document.createElement('button')
         likeBtn.classList.add('likes-icon')
+        likeBtn.setAttribute('aria-label', 'Ajouter ou retirer un like')
+
 
         const likeIconSVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
         likeIconSVG.setAttribute('width', "19")

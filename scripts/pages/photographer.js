@@ -64,7 +64,6 @@ function updateLike(event) {
         likesTotal.textContent = Number(likesTotal.textContent) + 1
         dataLikes.dataset.likes = Number(dataLikes.dataset.likes) + 1
     }
-    console.log('dataLikes: ', dataLikes.getAttribute('data-likes'))
 }
 
 function openFilterList(event) {
@@ -131,19 +130,12 @@ async function init() {
     const dropdownBtn = document.querySelector('.dropdown-btn')
 
     document.addEventListener('click', (event) => {
-        console.log('event.target: ', event.target)
         if (!event.target.matches('.btn-filter')
         && dropdownBtn.classList.contains('open')) {
             dropdownBtn.classList.remove('open')
         }
     })
-
-    // window.onclick = function(e) {
-    //     if (!e.target.classList.matches('.btn-filter') && dropdownBtn.classList.contains('open')){
-    //         dropdownBtn.classList.remove('open')
-    //     }
-    //  }
-    
+   
     const btnSortbyLike = document.querySelector('.btn-sortby-like')
     btnSortbyLike.addEventListener('click', sortGallery)
     

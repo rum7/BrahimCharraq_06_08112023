@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function photographerHeaderTemplate(data) {
     const { name, portrait, city, country, tagline} = data
 

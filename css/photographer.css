@@ -69,8 +69,6 @@
     height: 100%;
     object-fit: cover;
     transition: transform ease-out .2s;
-    /* -webkit-transform-style: preserve-3d; 
-    -webkit-backface-visibility: hidden; */
 }
 
 .photograph-gallery .media-thumbnail:hover {
@@ -107,7 +105,6 @@
     border: 0;
     background: none;
     padding: 5px;
-    cursor: pointer;
 }
 
 .photograph-gallery .likes-icon svg {
@@ -125,7 +122,10 @@
     color: #000;
     background-color: #DB8876;
 }
-
+.contact_button.form:hover {
+	color: #fff;
+	background-color: #C82A2A;
+}
 .contact_button {
     justify-self: center;
     padding: 11px;
@@ -137,7 +137,6 @@
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 .modal_container {
@@ -173,7 +172,6 @@
 
 .modal header img {
     width: 42px;
-    cursor: pointer;
 }
 
 .modal header h2 {
@@ -204,14 +202,36 @@
 
 .modal form .modal-input-field {
 	border: none;
-	border-radius: 5px;
+	border-radius: .25rem;
 	padding: 1rem;
 	font-size: 1rem;
+}
+.modal form .modal-input-field:focus-visible {
+    outline: .25rem solid #901c1cad;
 }
 
 .modal form textarea {
     height: 170px;
     resize: none;
+}
+
+.formData[data-error]::after {
+    content: attr(data-error);
+    display: block;
+    margin-top: 4px;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 14.26px;
+    color: #901c1c;
+    opacity: 0;
+    transition: 0.3s;
+}
+.formData[data-error-visible="true"]::after {
+    opacity: 1;
+}
+.formData[data-error-visible="true"] .text-control:focus-visible {
+    outline: .25rem solid #901c1c;
 }
 
 .photograph-gallery-filter {
@@ -241,7 +261,6 @@
 	background-color: #901C1C;
 	border: 0;
 	border-radius: 5px;
-	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -273,7 +292,6 @@
     color: #fff;
     background-color: #901C1C;
     border: 0;
-    cursor: pointer;
 }
 
 .dropdown-btn .dropdown-item .hide {
@@ -330,7 +348,6 @@
 	border: 0;
 	background: 0;
 	padding: 5px;
-	cursor: pointer;
 }
 
 
@@ -372,7 +389,6 @@
 .previous-media,
 .next-media,
 .close-media {
-	cursor: pointer;
 	padding: 25px;
 }
 

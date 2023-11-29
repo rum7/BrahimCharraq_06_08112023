@@ -32,7 +32,7 @@
             class="btn-filter" 
             aria-haspopup="true" 
             aria-controls="dropdown-menu"
-            aria-label="Filtrer la gallerie"
+            aria-label="Filtrer la galerie"
           >
             <span class="selected-filter">Popularité</span>
             <svg class="dropdown-filter-icon" width="16" height="11" viewBox="0 0 16 11">
@@ -40,7 +40,7 @@
             </svg>
           </button>
 
-          <ul class="dropdown-item" role="filter">
+          <ul id="dropdown-menu" class="dropdown-item">
             <li><button class="btn-sortby-like"><span>Popularité</span></button></li>
             <li><button class="btn-sortby-date"><span>Date</span></button></li>
             <li><button class="btn-sortby-title"><span>Titre</span></button></li>
@@ -71,7 +71,7 @@
           </button>
           <button 
             class="close-media"
-            aria-label="Fermer la gallerie"
+            aria-label="Fermer la galerie"
           >
             <svg width="42" height="42" viewBox="0 0 42 42">
               <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" />
@@ -81,50 +81,55 @@
       </div>
     </main>
 
-    <div id="contact_modal" class="modal_container">
+    <div id="contact_modal" class="modal_container" aria-hidden="true">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="bouton fermer le formulaire" />
+          <button
+            class="close-modal-contact"
+            aria-label="Fermer le formulaire"
+          >
+            <img src="assets/icons/close.svg" alt="bouton fermer le formulaire" />
+          </button>
         </header>
 				<form id="contact">
-					<div>
+					<div class="formData">
 						<label for="prenom">Prénom</label>
 						<input 
               type="text" 
               id="prenom" 
               name="prenom"
-              class="modal-input-field"
+              class="modal-input-field text-control"
             />
 					</div>
-					<div>
+					<div class="formData">
 						<label for="nom">Nom</label>
 						<input 
               type="text" 
               id="nom" 
               name="nom"
-              class="modal-input-field"
+              class="modal-input-field text-control"
             />
 					</div>
-					<div>
+					<div class="formData">
 						<label for="email">Email</label>
 						<input 
               type="text" 
               id="email" 
               name="email"
-              class="modal-input-field"
+              class="modal-input-field text-control"
             />
 					</div>
-          <div>
+          <div class="formData">
 						<label for="message">Message</label>
 						<textarea 
               id="message" 
               name="message"
-              class="modal-input-field"
+              class="modal-input-field text-control"
             ></textarea>
 					</div>
           <button 
-            class="contact_button"
+            class="contact_button form"
             aria-label="Envoyer le message"
           >
             Envoyer

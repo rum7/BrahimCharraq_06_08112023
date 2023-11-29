@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function photographerTemplate(data) {
     const { id, name, portrait, city, country, tagline, price } = data
 
@@ -15,6 +16,7 @@ function photographerTemplate(data) {
         
         const photographerLink = document.createElement('a')
         photographerLink.setAttribute("href", `photographer.html?id=${id}`)
+        photographerLink.setAttribute("aria-label", `Visiter la galerie de ${name}`)
         photographerLink.appendChild(profilePicture)
         photographerLink.appendChild(photographerName)
 
