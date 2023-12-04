@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-async function getAllData(currentPhotographerId) {
+async function getAllData(dataId) {
     const response = await fetch('../../data/photographers.json')
     const data = await response.json()
-    const photographerData = data.photographers.filter(photographer => photographer.id === currentPhotographerId)
-    const mediaDataList = data.media.filter(photographer => photographer.photographerId === currentPhotographerId)
+    const photographerData = data.photographers.filter(photographer => photographer.id === dataId)
+    const mediaDataList = data.media.filter(photographer => photographer.photographerId === dataId)
     mediaDataList.sort((a, b) => b.likes - a.likes)
 
     let totalLikes = 0
@@ -21,7 +21,6 @@ function displayPhotographerData(photographerData) {
 
 function displayMediaDataList(mediaDataList) {
     const photographerContent = document.querySelector('.photograph-gallery')
-    photographerContent.innerHTML = ""
     
     mediaDataList.forEach(mediaData => {
         const mediaModel = mediaDataListTemplate(mediaData)
@@ -110,7 +109,6 @@ function sortGallery(event) {
         mediacards.sort((a, b) => a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')))
     }
     
-    photographerContent.innerHTML = ""
     mediacards.forEach(mediacard => photographerContent.appendChild(mediacard))
 
     closeFilterList(sortBy)
@@ -119,7 +117,6 @@ function sortGallery(event) {
 async function init() {
     const url = new URL(document.location.href)
     const currentPhotographerId = Number(url.searchParams.get('id'))
-    
     const { photographerData, mediaDataList, totalLikes } = await getAllData(currentPhotographerId)
     displayPhotographerData(photographerData)
     displayMediaDataList(mediaDataList)

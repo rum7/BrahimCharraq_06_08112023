@@ -21,13 +21,6 @@ function photographerHeaderTemplate(data) {
     const photographerQuote = document.createElement('p')
     photographerQuote.textContent = tagline
 
-    dataContainer.appendChild(photographerName)
-    dataContainer.appendChild(photographerLocation)
-    dataContainer.appendChild(photographerQuote)
-
-    photographHeader.appendChild(dataContainer)
-    photographHeader.appendChild(contactBtn)
-    photographHeader.appendChild(profilePicture)
-
-    return photographHeader
+    dataContainer.append(photographerName, photographerLocation, photographerQuote, photographerQuote)
+    photographHeader.append(dataContainer, contactBtn, profilePicture)
 }

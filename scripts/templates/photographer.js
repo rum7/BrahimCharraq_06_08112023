@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 function photographerTemplate(data) {
     const { id, name, portrait, city, country, tagline, price } = data
-
     const picture = `assets/photographers/${portrait}`
 
     function getUserCardDOM() {
@@ -9,7 +8,7 @@ function photographerTemplate(data) {
 
         const profilePicture = document.createElement('img')
         profilePicture.setAttribute("src", picture)
-        profilePicture.setAttribute("alt", name)
+        profilePicture.setAttribute("alt", `Photographe ${name}`)
         
         const photographerName = document.createElement('h2')
         photographerName.textContent = name
@@ -17,8 +16,7 @@ function photographerTemplate(data) {
         const photographerLink = document.createElement('a')
         photographerLink.setAttribute("href", `photographer.html?id=${id}`)
         photographerLink.setAttribute("aria-label", `Visiter la galerie de ${name}`)
-        photographerLink.appendChild(profilePicture)
-        photographerLink.appendChild(photographerName)
+        photographerLink.append(profilePicture, photographerName)
 
         const photographerLocation = document.createElement('p')
         photographerLocation.textContent = `${city}, ${country}`
@@ -29,10 +27,7 @@ function photographerTemplate(data) {
         const photographerPrice = document.createElement('p')
         photographerPrice.textContent = `${price}€/jour`
 
-        article.appendChild(photographerLink)
-        article.appendChild(photographerLocation)
-        article.appendChild(photographerQuote)
-        article.appendChild(photographerPrice)
+        article.append(photographerLink,photographerLocation, photographerQuote, photographerPrice)
 
         return article
     }

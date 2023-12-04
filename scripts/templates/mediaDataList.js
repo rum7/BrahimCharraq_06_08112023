@@ -23,7 +23,7 @@ function mediaDataListTemplate(data) {
         content === image ? media = document.createElement('img') : media = document.createElement('video')
         media.classList.add('media-thumbnail')
         media.setAttribute('src', mediaPath)
-        media.setAttribute('alt', title)
+        media.setAttribute('alt', `Media ${title}`)
         media.setAttribute('loading', 'lazy')
         
         //media details (title and likes)
